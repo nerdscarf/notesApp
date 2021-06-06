@@ -2,7 +2,6 @@
 
 <head>
     <link rel="stylesheet" href="index.css">
-    <script src="index.js"></script>
 </head>
 
 <div class="second-page">
@@ -15,6 +14,16 @@
 
 
 <script>
+var localNotes = localStorage.getItem('note')
+var notesObject = JSON.parse(localNotes)
 
+let notesArray = Object.values(notesObject)
+let orderedList = document.getElementById('notes-list');
+
+notesArray.forEach(note => {
+        let listItem = document.createElement('li');
+        listItem.innerHTML = note
+        orderedList.appendChild(listItem);
+    })
 
 </script>

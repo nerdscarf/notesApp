@@ -7,7 +7,7 @@
 </head>
 <body>
     <div class="front-page">
-        <h2 class="header">Note Taker App</h2>
+        <h2 class="header">Take Notes</h2>
             <textarea id="note" name="note-text" class="note-area"></textarea>
             <br>
             <button id="submit" onclick="saveNote()" class="submit">Save Note</button>
@@ -18,9 +18,24 @@
 </body>
 
 <script>
-var textElement = document.getElementById("note")
+
+var textElement = document.getElementById("note");
 
 function saveNote() {
-    
+    if (textElement.value == ""){
+        return alert('Empty notes are not accepted')
+    }
+
+    const id = getNoteId()
+    let noteObject = getExistingNotes()
+    if (!noteObject){
+        noteObject = {}
+    }
+
+    noteObject[id] = textElement.value
+    localStorage.setItem('note', JSON.stringify(noteObject))
+    alert('Note Saved!')
 }
+
+
 </script>
